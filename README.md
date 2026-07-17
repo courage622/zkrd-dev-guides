@@ -2,15 +2,22 @@
 
 本项目用于统一管理团队开发规范相关的文件，为团队成员提供集中、清晰且可持续维护的开发指引。
 
-## 主要内容
+## 规范文档
 
-本仓库可用于维护以下类型的规范：
+| 文档 | 内容说明 |
+|---|---|
+| [Git 基础与团队协作指南](./GIT_BASICS_AND_COLLABORATION.md) | 介绍 Git 本地仓库基础、远程仓库操作及 GitLab 多人协作知识，适合团队成员学习和查阅。 |
+| [GitLab 开发与发布流程规范](./GITLAB_DEVELOPMENT_WORKFLOW.md) | 规定功能开发、分支管理、代码合并、版本发布、生产部署和紧急修复流程。 |
+| [GitLab 项目配置与开发管理规范](./GITLAB_PROJECT_MANAGEMENT.md) | 规定项目创建、成员权限、仓库初始化、开发过程管控和版本发布等项目管理要求。 |
+| [GitLab Merge Request 代码审查规范](./GITLAB_CODE_REVIEW.md) | 规定 Merge Request 的创建、代码审查、意见处理、复审和合并流程。 |
+| [软件版本管理快速指南](./VERSIONING_QUICK_GUIDE.md) | 提供版本文件、版本号更新、CHANGELOG、发布 Tag 和 CI 检查规则的日常速查指引。 |
 
-- 编码规范与最佳实践
-- Git 分支、提交及版本管理规范
-- 代码评审与合并流程
-- 项目目录和文档编写规范
-- 测试、发布及其他研发流程规范
+## 推荐阅读顺序
+
+1. 新成员先阅读 [Git 基础与团队协作指南](./GIT_BASICS_AND_COLLABORATION.md)，了解 Git 和 GitLab 基础。
+2. 开始日常开发前阅读 [GitLab 开发与发布流程规范](./GITLAB_DEVELOPMENT_WORKFLOW.md) 和 [GitLab Merge Request 代码审查规范](./GITLAB_CODE_REVIEW.md)。
+3. 项目负责人阅读 [GitLab 项目配置与开发管理规范](./GITLAB_PROJECT_MANAGEMENT.md)，完成项目及权限配置。
+4. 准备版本发布或日常查阅版本规则时，阅读 [软件版本管理快速指南](./VERSIONING_QUICK_GUIDE.md)。
 
 ## 使用方式
 

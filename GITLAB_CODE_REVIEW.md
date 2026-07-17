@@ -1,4 +1,4 @@
-# 中科融道 GitLab MR 代码审查操作规范
+# 中科融道 GitLab Merge Request 代码审查规范
 
 ## 1. 目的和适用范围
 

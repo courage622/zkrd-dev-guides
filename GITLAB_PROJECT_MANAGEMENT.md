@@ -1,4 +1,4 @@
-# 中科融道基于 GitLab 的项目开发管理规范
+# 中科融道 GitLab 项目配置与开发管理规范
 
 ## 1. 适用范围
 
@@ -6,8 +6,8 @@
 
 配套文档：
 
-- [`GIT_WORKFLOW.md`](./GIT_WORKFLOW.md)：分支、合并、发布和热修复规范。
-- [`GITLAB_TRAINING.md`](./GITLAB_TRAINING.md)：Git 本地仓库与远程协作基础。
+- [`GITLAB_DEVELOPMENT_WORKFLOW.md`](./GITLAB_DEVELOPMENT_WORKFLOW.md)：分支、合并、发布和热修复规范。
+- [`GIT_BASICS_AND_COLLABORATION.md`](./GIT_BASICS_AND_COLLABORATION.md)：Git 本地仓库与远程协作基础。
 
 核心流程：
 
