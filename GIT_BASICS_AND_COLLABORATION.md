@@ -1,12 +1,5 @@
 # 中科融道 Git 基础与团队协作指南
 
-本文档按照知识的依赖关系，分两个层次介绍 Git 代码管理：
-
-1. Git 本地仓库基础：工作区、暂存区、Commit、分支、合并和恢复。
-2. Git 远程仓库与协作：远程分支、Fetch、Pull、Push、MR/PR、CI 和多人协同开发。
-
-配套开发发布规范：[`GITLAB_DEVELOPMENT_WORKFLOW.md`](./GITLAB_DEVELOPMENT_WORKFLOW.md)。
-
 ## 目录
 
 - [1. 代码管理基础理论](#1-代码管理基础理论)
