@@ -581,25 +581,7 @@ CONFLICT (content): Merge conflict in src/example.py
 
 #### 2.3.13 变基分支：`git rebase`
 
-`rebase` 用于把当前分支上的 Commit 重新应用到新的基础 Commit 之后。它不会简单地创建一个 Merge Commit，而是会重写当前分支的 Commit 历史。
-
-例如，任务分支创建后 `dev` 又增加了 Commit：
-
-```text
-变基前：
-
-          D──E  feature/example
-         /
-A──B──C──F      origin/dev
-
-变基后：
-
-A──B──C──F──D'──E'  feature/example
-```
-
-`D'`、`E'` 与原来的 `D`、`E` 修改内容相同，但父 Commit 和 Commit ID 已经改变。
-
-在个人任务分支同步最新 `dev`：
+作用：把当前分支的独有 Commit 重新应用到新的基础分支之后，形成线性历史。被重新应用的 Commit ID 会改变。
 
 ```bash
 git status
@@ -608,91 +590,47 @@ git switch feature/example
 git rebase origin/dev
 ```
 
-命令含义是：把当前 `feature/example` 分支上的独有 Commit，依次重新应用到最新 `origin/dev` 之后。
-
-适合使用 `rebase` 的场景：
+适合用于：
 
 - 个人任务分支需要同步目标分支的最新代码。
-- 创建 MR 前希望保持提交历史清晰、线性。
-- 尚未共享的本地 Commit 需要调整顺序、合并或修改说明。
+- 尚未共享的本地 Commit 需要整理历史。
 
-不应使用 `rebase` 的场景：
+不应对 `main`、`dev`、`release/*` 等共享分支执行 rebase，也不要重写已经被其他成员使用的 Commit。
 
-- 不对共享的 `main`、`dev`、`release/*` 等长期或保护分支执行 rebase。
-- 不重写已经被其他成员拉取并继续开发的共享 Commit。
-- 不清楚命令影响或工作区存在未处理修改时，不直接执行 rebase。
-
-`merge` 和 `rebase` 的主要区别：
+与 merge 的区别：
 
 | 对比项 | `git merge origin/dev` | `git rebase origin/dev` |
 |---|---|---|
 | 历史处理 | 保留原有分支历史，可能产生 Merge Commit | 重写当前分支独有 Commit，形成线性历史 |
 | Commit ID | 原有 Commit ID 不变 | 被重新应用的 Commit ID 会改变 |
-| 推送方式 | 通常直接 `git push` | 已推送过时通常需要 `git push --force-with-lease` |
-| 适用范围 | 共享分支或希望保留真实合并关系 | 自己维护的短生命周期任务分支 |
 
-发生冲突时，rebase 会暂停：
+发生冲突时，修改冲突文件并继续：
 
 ```bash
 git status
-
-# 手工修改冲突文件并运行测试
-
 git add <已解决的冲突文件>
 git rebase --continue
 ```
 
-如果决定放弃本次变基并恢复到开始前的状态：
+放弃本次变基：
 
 ```bash
 git rebase --abort
 ```
 
-如果确认当前 Commit 的修改已经由目标分支包含，可以跳过该 Commit：
+如果任务分支已经推送过，变基后使用：
 
 ```bash
-git rebase --skip
-```
-
-`--skip` 会丢弃当前正在应用的 Commit，使用前必须确认其修改确实不再需要。一次 rebase 可能在多个 Commit 上分别产生冲突，应重复解决、暂存并执行 `git rebase --continue`，直到完成。
-
-变基后的推送方式：
-
-```bash
-# 分支从未推送过
-git push -u origin feature/example
-
-# 自己的任务分支已经推送过
 git push --force-with-lease
 ```
 
-禁止用 `git push --force` 代替 `--force-with-lease`。如果远程分支包含本地未获取的新 Commit，`--force-with-lease` 会拒绝覆盖，从而降低误删他人修改的风险。
-
-整理尚未共享的本地 Commit 时，可以使用交互式 rebase：
+禁止使用 `git push --force`。执行前应确认该分支只由自己维护，并且工作区干净。复杂操作前可以创建本地备份分支：
 
 ```bash
-git rebase -i HEAD~3
+git branch backup/feature-example-before-rebase
 ```
 
-该命令用于整理最近 3 个 Commit。常用操作：
-
-| 操作 | 作用 |
-|---|---|
-| `pick` | 保留 Commit |
-| `reword` | 修改 Commit Message |
-| `squash` | 合并到前一个 Commit，并重新编辑说明 |
-| `fixup` | 合并到前一个 Commit，通常丢弃当前说明 |
-| `drop` | 删除 Commit |
-
-交互式 rebase 只能用于自己维护且尚未被他人依赖的 Commit。
-
-常用技巧：
-
-1. 执行前先用 `git status` 确认工作区干净，并用 `git fetch origin` 获取最新目标分支。
-2. 始终确认当前分支；`git rebase <目标分支>` 改写的是当前分支，不是目标分支。
-3. 复杂变基前可执行 `git branch backup/feature-example-before-rebase` 创建本地备份指针。
-4. 变基完成后使用 `git log --oneline --graph --decorate -10` 和测试命令检查结果。
-5. 已推送任务分支变基后只使用 `--force-with-lease`，并确认没有其他成员共用该分支。
+整理最近几个尚未共享的本地 Commit，可以使用 `git rebase -i HEAD~3`；完成后应检查 `git log` 并运行测试。
 
 #### 2.3.14 删除已完成分支：`git branch -d`
 
