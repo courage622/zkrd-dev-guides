@@ -195,7 +195,7 @@ Settings → Repository → Branch rules
 | 配置 | 推荐值 |
 |---|---|
 | Allowed to push and merge | No one |
-| Allowed to merge | Maintainers；流程稳定后可调整为 Developers + Maintainers |
+| Allowed to merge | Maintainers |
 | Allow force push | 关闭 |
 
 必须明确设置 `Allowed to push and merge = No one`，禁止直接 Push；所有代码通过 MR 合入。
