@@ -1,0 +1,5 @@
+# macOS 系统文件
+.DS_Store
+
+# Markdown 转换生成的 PDF 等输出文件
+/output/
