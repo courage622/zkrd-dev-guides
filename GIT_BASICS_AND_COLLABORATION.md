@@ -286,7 +286,7 @@ main: A──B──C──D
 ```bash
 mkdir my-project
 cd my-project
-git init
+git init -b main
 ```
 
 典型输出：
@@ -648,7 +648,7 @@ git tag -a v1.0.0 -m "Release v1.0.0"
 ```bash
 mkdir workticket-demo
 cd workticket-demo
-git init
+git init -b main
 ```
 
 #### 2.4.2 创建第一个版本
@@ -693,8 +693,6 @@ git branch -d feature/history-search
 git tag -a v1.0.0 -m "Release v1.0.0"
 git log --oneline --decorate -10
 ```
-
-这就是不依赖远程平台的完整本地版本管理过程。
 
 ## 3. Git 远程仓库与协作
 
