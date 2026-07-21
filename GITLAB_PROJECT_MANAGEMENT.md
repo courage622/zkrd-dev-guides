@@ -30,7 +30,7 @@
 
 配套文档：
 
-- [`GITLAB_DEVELOPMENT_WORKFLOW.md`](./GITLAB_DEVELOPMENT_WORKFLOW.md)：分支、合并、发布和热修复规范。
+- [`GITLAB_DEVELOPMENT_WORKFLOW.md`](./GITLAB_DEVELOPMENT_WORKFLOW.md)：首次交付、持续迭代、分支、合并、发布和热修复规范。
 - [`GIT_BASICS_AND_COLLABORATION.md`](./GIT_BASICS_AND_COLLABORATION.md)：Git 本地仓库与远程协作基础。
 
 核心流程：
